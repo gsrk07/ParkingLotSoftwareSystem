@@ -1,8 +1,7 @@
 package ParkingLot.models;
 
-public class Vehicle {
+public class Vehicle extends BaseModel{
 
-    private int id;
     private String color;
     private String number;
     private String make;
@@ -17,13 +16,6 @@ public class Vehicle {
         this.vehicleType = vehicleType;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getColor() {
         return color;
