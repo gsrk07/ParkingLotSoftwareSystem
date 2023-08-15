@@ -35,7 +35,4 @@ public class ParkingSpotRepository {
         System.out.println("Parking spot added successfully ");
     }
 
-
-
-
 }
