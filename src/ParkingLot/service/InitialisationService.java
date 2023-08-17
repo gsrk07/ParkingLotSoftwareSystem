@@ -6,6 +6,7 @@ import ParkingLot.repository.ParkingGateRepository;
 import ParkingLot.repository.ParkingLotRepository;
 import ParkingLot.repository.ParkingSpotRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InitialisationService {
@@ -48,9 +49,24 @@ public class InitialisationService {
         exitgate.setFloornumber(1);
 
         // ADDING IT TO PARKINGLOT
-        parkingLot.setGateList(List.of(entrygate,entrygate));
+        parkingLot.setGateList(List.of(entrygate,entrygate)); // adding the gates to parking lot and repo
         parkingGateRepository.set(entrygate);
         parkingGateRepository.set(exitgate);
+
+        // NOW WE GO AHEAD AND CREATE PARKING FLOORS
+
+        List<ParkingFloor> parkingFloorList = new ArrayList<>();
+
+        for(int i = 0; i< 10; i++){
+            ParkingFloor parkingFloor = new ParkingFloor();
+            parkingFloor.setId(100 + i);
+            parkingFloor.setFloorno(i);
+            parkingFloor.setStatus(Status.ACTIVE);
+            parkingFloorList.add(parkingFloor);
+            parkingFloorRepository.set(parkingFloor);
+        }
+
+        parkingLot.setParkingFloorList(parkingFloorList);
 
 
     }
