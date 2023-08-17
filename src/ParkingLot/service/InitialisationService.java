@@ -31,7 +31,6 @@ public class InitialisationService {
         parkingLot.setAddress(" Road A, City B, State C");
         parkingLot.setCapacity(100);
 
-
         Gate entrygate = new Gate();
         entrygate.setId(1);
         entrygate.setOperator("Ramu");
@@ -57,17 +56,39 @@ public class InitialisationService {
 
         List<ParkingFloor> parkingFloorList = new ArrayList<>();
 
-        for(int i = 0; i< 10; i++){
+        for(int i = 1; i <= 10; i++){
+
             ParkingFloor parkingFloor = new ParkingFloor();
             parkingFloor.setId(100 + i);
             parkingFloor.setFloorno(i);
             parkingFloor.setStatus(Status.ACTIVE);
+
+            List<ParkingSpot> parkingSpotList = new ArrayList<>(); // List of spots per floor.
+
+            for(int j = 1; j<= 10; j++){
+
+              ParkingSpot parkingSpot = new ParkingSpot();
+              // we dont add vehicle since at time of creating we will not have any vehicle at time of creation of the spot.
+              parkingSpot.setId(1000 + j);
+              parkingSpot.setNumberofspot(i * 10 + j);
+              // CURRENTLY NOT CONSIDERING EV. ONLY 2 AND 4 WHEELERS.
+              if(j%2 == 0){
+                  parkingSpot.setSupportedvehicleType(VehicleType.TWO_WHEELER);
+              }
+              else {
+                  parkingSpot.setSupportedvehicleType(VehicleType.FOUR_WHEELER);
+              }
+              parkingSpot.setStatus(Status.AVAILABLE);
+              parkingSpotList.add(parkingSpot);
+              parkingSpotRepository.set(parkingSpot);
+            }
+            parkingFloor.setParkingSpotList(parkingSpotList);
             parkingFloorList.add(parkingFloor);
             parkingFloorRepository.set(parkingFloor);
         }
 
         parkingLot.setParkingFloorList(parkingFloorList);
-
+        parkingLotRepository.set(parkingLot);
 
     }
 
