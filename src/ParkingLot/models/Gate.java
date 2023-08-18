@@ -12,6 +12,10 @@ public class Gate extends BaseModel{
 
     private int floornumber;
 
+    // adding the parkinglot id so that from the gate passed in spot allocation strategy, we can get parkinglot details
+
+    private int parkingLotId;
+
     public int getGatenumber() {
         return gatenumber;
     }
@@ -28,6 +32,7 @@ public class Gate extends BaseModel{
         this.operator = operator;
     }
 
+    // as of now making the operator as a string
     //    public Operator getOperator() {
 //        return operator;
 //    }
@@ -58,5 +63,13 @@ public class Gate extends BaseModel{
 
     public void setFloornumber(int floornumber) {
         this.floornumber = floornumber;
+    }
+
+    public int getParkingLotId() {
+        return parkingLotId;
+    }
+
+    public void setParkingLotId(int parkingLotId) {
+        this.parkingLotId = parkingLotId;
     }
 }

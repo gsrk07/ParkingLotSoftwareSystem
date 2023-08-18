@@ -16,6 +16,10 @@ public class InitialisationService {
     ParkingSpotRepository parkingSpotRepository;
     ParkingGateRepository parkingGateRepository;
 
+    /***
+     *
+     * This will create a parking lot with 10 floors and each floor has 10 spots.
+     */
     public InitialisationService() {
         this.parkingLotRepository = new ParkingLotRepository();
         this.parkingFloorRepository = new ParkingFloorRepository();
@@ -23,7 +27,7 @@ public class InitialisationService {
         this.parkingGateRepository = new ParkingGateRepository();
     }
 
-    public void initialise(){
+    public ParkingLot initialise(){
 
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.setId(1);
@@ -31,26 +35,43 @@ public class InitialisationService {
         parkingLot.setAddress(" Road A, City B, State C");
         parkingLot.setCapacity(100);
 
-        Gate entrygate = new Gate();
-        entrygate.setId(1);
-        entrygate.setOperator("Ramu");
-        entrygate.setGatenumber(1);
-        entrygate.setGateType(GateType.ENTRY);
-        entrygate.setStatus(Status.ACTIVE);
-        entrygate.setFloornumber(1);
+//        Gate entrygate = new Gate();
+//        entrygate.setId(1);
+//        entrygate.setOperator("Ramu");
+//        entrygate.setGatenumber(1);
+//        entrygate.setGateType(GateType.ENTRY);
+//        entrygate.setStatus(Status.ACTIVE);
+//        entrygate.setFloornumber(1);
+//
+//        Gate exitgate = new Gate();
+//        exitgate.setId(2);
+//        exitgate.setOperator("Somu");
+//        exitgate.setGatenumber(2);
+//        exitgate.setGateType(GateType.EXIT);
+//        exitgate.setStatus(Status.ACTIVE);
+//        exitgate.setFloornumber(1);
 
-        Gate exitgate = new Gate();
-        exitgate.setId(2);
-        exitgate.setOperator("Somu");
-        exitgate.setGatenumber(2);
-        exitgate.setGateType(GateType.EXIT);
-        exitgate.setStatus(Status.ACTIVE);
-        exitgate.setFloornumber(1);
+        Gate entryGate = new Gate();
+        entryGate.setId(1);
+        entryGate.setOperator("Ramu Kumar");
+        entryGate.setGatenumber(1);
+        entryGate.setGateType(GateType.ENTRY);
+        entryGate.setFloornumber(1);
+        entryGate.setStatus(Status.ACTIVE);
+
+        Gate exitGate = new Gate();
+        exitGate.setId(2);
+        exitGate.setOperator("Mohan Kumar");
+        exitGate.setGatenumber(2);
+        exitGate.setGateType(GateType.EXIT);
+        exitGate.setFloornumber(1);
+        exitGate.setStatus(Status.ACTIVE);
+
 
         // ADDING IT TO PARKINGLOT
-        parkingLot.setGateList(List.of(entrygate,entrygate)); // adding the gates to parking lot and repo
-        parkingGateRepository.set(entrygate);
-        parkingGateRepository.set(exitgate);
+        parkingLot.setGateList(List.of(entryGate,exitGate)); // adding the gates to parking lot and repo
+        parkingGateRepository.set(entryGate);
+        parkingGateRepository.set(exitGate);
 
         // NOW WE GO AHEAD AND CREATE PARKING FLOORS
 
@@ -89,6 +110,8 @@ public class InitialisationService {
 
         parkingLot.setParkingFloorList(parkingFloorList);
         parkingLotRepository.set(parkingLot);
+
+        return parkingLot;
 
     }
 
