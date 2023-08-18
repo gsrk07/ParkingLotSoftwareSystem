@@ -2,7 +2,7 @@ package ParkingLot.models;
 
 import java.time.LocalDateTime;
 
-public class Ticket extends  BaseModel{
+public class Ticket extends BaseModel{
 
     private LocalDateTime entrytime;
 
